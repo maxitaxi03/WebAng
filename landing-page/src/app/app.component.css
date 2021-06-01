@@ -1,0 +1,9 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+main {
+    background: linear-gradient(to left, #fe7051, #ff7800);
+}
