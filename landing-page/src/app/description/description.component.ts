@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AppService} from '../app.service';
+import {Content} from '../content';
 
 @Component({
   selector: 'app-description',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./description.component.css']
 })
 export class DescriptionComponent implements OnInit {
+  pageContent: Content = {id: ''};
 
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit(): void {
+     this.getContent();
+  }
+  getContent() {
+    this.pageContent = this.appService.getContent('description');
   }
 
 }
