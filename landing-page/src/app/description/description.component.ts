@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AppService} from '../app.service';
 import {Content} from '../content';
 
+
 @Component({
   selector: 'app-description',
   templateUrl: './description.component.html',
