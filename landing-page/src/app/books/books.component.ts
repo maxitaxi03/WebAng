@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
-import {Book} from '../book';
-import {BookService} from '../book.service';
+import {BookService} from './book.service';
+import {Book} from './book.model';
+import {IBook} from './book.interface';
 
 @Component({
   selector: 'app-books',
@@ -8,10 +9,13 @@ import {BookService} from '../book.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  // @Input() book?: Book;
+  // @Input() book?: IBook;
   inputISBN = '9780140328721';
-  book: Book = {isbn10: '', isbn13: '', title: undefined};
-  constructor(private bookService: BookService) { }
+  book: IBook = {isbn10: '', isbn13: '', title: undefined};
+  bookModel: Book;
+  constructor(private bookService: BookService) {
+    this.bookModel = new Book();
+  }
 
   ngOnInit(): void {}
 
@@ -19,13 +23,17 @@ export class BooksComponent implements OnInit {
    *
    */
   getBook(): void {
-    console.log(this.inputISBN);
-    // make sure input is 10 or 13 characters
+    // Todo: make sure input is 10 or 13 characters
     this.bookService.getBook(this.inputISBN)
       .subscribe(book => {
         if (book) {
           this.book = book
         }
         });
+  }
+  getBookModel(): void {
+    // Todo: make sure input is 10 or 13 characters
+    this.bookService.getBookModel(this.inputISBN)
+      .subscribe(book => this.bookModel = book);
   }
 }

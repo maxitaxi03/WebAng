@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Book } from './book';
+import {Book} from './book.model';
+import {IBook} from './book.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 
@@ -19,25 +20,40 @@ export class BookService {
   ) { }
 
   /**
-   * Get Book by ISBN. Returns 404 if isbn not found
+   * Get IBook by ISBN. Returns 404 if isbn not found
    * @param isbn
-   * Todo: shape raw json data with Book interface
    */
-  getBook(isbn: string) {
+  getBook(isbn: string): Observable<IBook | undefined> {
     const url = `${this.booksUrl}/${isbn}.json`;
-    return this.http.get<Book>(url).pipe(
-      map(data => {
-        console.log(data);
-        return data ? {
-          title: 'Hello',
-          numPages: 0,
-          isbn10: '123',
-          isbn13: '12345',
-        } : undefined;
+    return this.http.get(url).pipe(
+      map((data: any) => {
+        return data ? BookService.bookFromAPI(data) : undefined;
+      }),
+      tap(_ => console.log(`fetched hero id=${isbn}`)),
+      catchError(this.handleError<IBook>(`getBook isbn=${isbn}`))
+    );
+  }
+  /**
+   * Get IBook by ISBN. Returns 404 if isbn not found
+   * @param isbn
+   */
+  getBookModel(isbn: string): Observable<Book> {
+    const url = `${this.booksUrl}/${isbn}.json`;
+    return this.http.get(url).pipe(
+      map((data: any) => {
+        return new Book(data);
       }),
       tap(_ => console.log(`fetched hero id=${isbn}`)),
       catchError(this.handleError<Book>(`getBook isbn=${isbn}`))
     );
+  }
+  private static bookFromAPI(data: any): IBook {
+    return {
+      title: data.title,
+      numPages: data.number_of_pages,
+      isbn10: data.isbn_10,
+      isbn13: data.isbn_13,
+    }
   }
   /**
    * Handle Http operation that failed.

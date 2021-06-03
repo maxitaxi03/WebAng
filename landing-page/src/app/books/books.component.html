@@ -1,14 +1,18 @@
 <label for="isbnInput">Search</label>
 <input id="isbnInput" [(ngModel)]="inputISBN"  type="text"
        size="13" maxlength="13" />
-<button (click)="getBook()">Find</button>
-<p>
-<span>{{inputISBN}}</span>
-</p>
+<button (click)="getBookModel()">Find</button>
 
-<div *ngIf="book?.title">
+<div *ngIf="book?.title" style="padding: 10px;">
 <h2>{{book.title}}</h2>
 <div><span>ISBN-13: </span>{{book.isbn13}}</div>
   <div><span>ISBN-10: </span>{{book.isbn10}}</div>
   <div><span>Page Count: </span>{{book.numPages}}</div>
+</div>
+
+<div *ngIf="bookModel.isbn13 != ''" style="padding: 10px;">
+  <h2>{{bookModel.title}}</h2>
+  <div><span>ISBN-13: </span>{{bookModel.isbn13}}</div>
+  <div><span>ISBN-10: </span>{{bookModel.isbn10}}</div>
+  <div><span>Page Count: </span>{{bookModel.numPages}}</div>
 </div>
