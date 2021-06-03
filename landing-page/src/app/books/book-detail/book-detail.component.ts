@@ -1,14 +1,14 @@
 import { Component, OnInit,Input } from '@angular/core';
-import {BookService} from './book.service';
-import {Book} from './book.model';
-import {IBook} from './book.interface';
+import {BookService} from '../book.service';
+import {Book} from '../book.model';
+import {IBook} from '../book.interface';
 
 @Component({
   selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  templateUrl: './book-detail.component.html',
+  styleUrls: ['./book-detail.component.css']
 })
-export class BooksComponent implements OnInit {
+export class BookDetailComponent implements OnInit {
   // @Input() book?: IBook;
   inputISBN = '9780140328721';
   book: IBook = {isbn10: '', isbn13: '', title: undefined};

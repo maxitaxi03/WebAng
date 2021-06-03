@@ -6,15 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DescriptionComponent } from './description/description.component';
-import { BooksComponent } from './books/books.component';
+import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import {FormsModule} from '@angular/forms';
+import { BookSearchComponent } from './books/book-search/book-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     DescriptionComponent,
-    BooksComponent
+    BookDetailComponent,
+    BookSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,11 @@
     font-family: 'Poppins', sans-serif;
 }
 main {
-    background: linear-gradient(to left, #fe7051, #ff7800);
+    /* background: linear-gradient(to left, #fe7051, #ff7800); */
     /* background-image: url(/landing-page/static/galaxy.jpg); */
+}
+
+.card {
+  padding: 20px;
+  margin: 20px;
 }

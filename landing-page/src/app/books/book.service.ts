@@ -18,7 +18,14 @@ export class BookService {
   constructor(
     private http: HttpClient,
   ) { }
-
+  /**
+   * Get IBook by ISBN. Returns 404 if isbn not found
+   * @param author
+   */
+  findBookByAuthor(author: string): Observable<IBook[] | undefined> {
+    // const url = `${this.booksUrl}/${isbn}.json`;
+    return of([]);
+  }
   /**
    * Get IBook by ISBN. Returns 404 if isbn not found
    * @param isbn
