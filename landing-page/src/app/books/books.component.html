@@ -1,4 +1,14 @@
-<!--<label for="">Search</label>
-<input type="text">
-<button (click)="getBooks()">Click</button>--->
-<h2>hello</h2>
+<label for="isbnInput">Search</label>
+<input id="isbnInput" [(ngModel)]="inputISBN"  type="text"
+       size="13" maxlength="13" />
+<button (click)="getBook()">Find</button>
+<p>
+<span>{{inputISBN}}</span>
+</p>
+
+<div *ngIf="book?.title">
+<h2>{{book.title}}</h2>
+<div><span>ISBN-13: </span>{{book.isbn13}}</div>
+  <div><span>ISBN-10: </span>{{book.isbn10}}</div>
+  <div><span>Page Count: </span>{{book.numPages}}</div>
+</div>

@@ -6,5 +6,5 @@
 }
 main {
     background: linear-gradient(to left, #fe7051, #ff7800);
-    background-image: url(/landing-page/static/galaxy.jpg);
+    /* background-image: url(/landing-page/static/galaxy.jpg); */
 }
