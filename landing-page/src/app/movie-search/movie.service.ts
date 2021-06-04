@@ -3,7 +3,8 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Movie } from './movie.interface';
-import {AppService} from '../app.service';
+import { AppService } from '../app.service';
+import { MovieClass } from './movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,34 @@ export class MovieService {
           'findMovieByTitle', []))
       );
   }
+  getBook(term: string): Observable<Movie | undefined> {
+    const url = `${this.moviesUrl}/${term}.json`;
+    return this.http.get(url).pipe(
+      map((data: any) => {
+        return data ? MovieService.movieFromAPI(data) : undefined;
+      }),
+      tap(_ => console.log(`fetched movie name=${term}`)),
+      catchError(this.handleError<Movie>(`getBook isbn=${term}`))
+    );
+  }
+  private static movieFromAPI(data: any): Movie {
+    return {
+      title: data.title,
+      overview: data.overview,
+    }
+  }
 
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 }

@@ -12,6 +12,7 @@ import { Movie } from './movie.interface';
 })
 export class MovieSearchComponent implements OnInit {
   movies: Movie[] = [];
+  movies$!: Observable<Movie[]>;
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {}

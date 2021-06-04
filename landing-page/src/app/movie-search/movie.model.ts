@@ -1,3 +1,19 @@
-export class Movie {
-    title?: string;
+export class MovieClass {
+    title: string;
+    overview?: string;
+
+    constructor(data?: any) {
+        this.title = '';
+        this.overview = '';
+        if (data) {
+          this.fromAPI(data);
+        }
+      }
+      
+      fromAPI(data: any) {
+          this.title = data.title;
+          this.overview = data.overview;
+      }
 }
+
+
