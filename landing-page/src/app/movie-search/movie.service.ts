@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Movie } from './movie.interface';
+import { title } from 'process';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +19,21 @@ export class MovieService {
 
   constructor(
     private http: HttpClient,
+
   ) { }
 }
 
-//get movie via
-getMovie(apiKey: string): Observable<Movie | undefined> {
-  const url = 
+//get movie via title
+findMovieByTitle(title: string): Observable<Movie[]> {
+  if (!title.trim()) {
+    return of([]);
+  } 
+  return this.http.get<Movie[]>(`${this.moviesUrl}/?title=${title}`)
+  .pipe(
+    tap(x => x.length ?
+      console.log(`found movie`),
+      console.log(`no movie found`),
+  )
 }
+
+
