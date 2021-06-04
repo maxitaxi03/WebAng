@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Movie } from './movie.interface';
 import { AppService } from '../app.service';
-import { MovieClass } from './movie.model';
+import { CMovie } from './movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +24,12 @@ export class MovieService {
 
 
 //get movie via title
-  findMovieByTitle(term: string): Observable<Movie[]> {
+  findMovieByTitle(term: string): Observable<Movie[] | undefined> {
     if (!term.trim()) {
       // if no search term, return empty movie array.
       return of([]);
     }
-    const url = `${this.moviesUrl}/?title=${term}`;
+    const url = `${this.moviesUrl}/?title=${term}.json`;
     return this.http.get<Movie[]>(url)
       .pipe(
         tap(movie => movie.length ?

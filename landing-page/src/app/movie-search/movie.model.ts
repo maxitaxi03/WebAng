@@ -1,4 +1,4 @@
-export class MovieClass {
+export class CMovie {
     title: string;
     overview?: string;
 
