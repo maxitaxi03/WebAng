@@ -21,8 +21,7 @@ export class MovieSearchComponent implements OnInit {
    *
    */
   search(searchTerm: string): void {
-    this.movieService.findMovieByTitle(searchTerm)
-    .subscribe();
+    this.movies$ = this.movieService.findMovieByTitle(searchTerm);
   }
 
 }

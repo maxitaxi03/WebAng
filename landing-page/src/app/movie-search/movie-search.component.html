@@ -4,8 +4,9 @@
 
     <ul class="search-result">
         <li *ngFor="let movie of movies$ | async">
-           <div class="movie-search-listing"> 
+           <div class="movie-search-listing">
                <span class="movie-title">{{movie.title}}</span>
+             <br>
                 <span class="movie-overview">{{movie.overview}}</span>
             </div>
         </li>
