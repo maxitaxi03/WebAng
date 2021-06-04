@@ -1,4 +1,4 @@
 export interface Movie {
-    title?: string;
+    title: string;
     producer?: string;
 }

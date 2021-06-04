@@ -11,14 +11,16 @@ import { Movie } from './movie.interface';
   styleUrls: ['./movie-search.component.css']
 })
 export class MovieSearchComponent implements OnInit {
-  title = '';
   movies: Movie[] = [];
   constructor(private movieService: MovieService) { }
 
-  ngOnInit(): void {
-  }
-  findMovie() {
-    this.movieService.findMovieByTitle(this.title)
+  ngOnInit(): void {}
+
+  /**
+   *
+   */
+  search(searchTerm: string): void {
+    this.movieService.findMovieByTitle(searchTerm)
     .subscribe();
   }
 
