@@ -1,13 +1,14 @@
 <div id="search-component">
+  <div class="movie-search-box">
     <label for="search-box">Movie Search</label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
+    <input #searchBox id="search-box" (input)="search(searchBox.value)"
+    placeholder="Title"/>
+  </div>
     <ul class="search-result">
         <li *ngFor="let movie of movies$ | async">
            <div class="movie-search-listing">
-               <span class="movie-title">{{movie.title}}</span>
-             <br>
-                <span class="movie-overview">{{movie.overview}}</span>
+             <span class="movie-title">{{movie.title}}</span>
+             <span class="movie-overview">{{movie.overview}}</span>
             </div>
         </li>
     </ul>
