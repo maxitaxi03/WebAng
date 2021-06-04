@@ -9,6 +9,7 @@ import { DescriptionComponent } from './description/description.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import {FormsModule} from '@angular/forms';
 import { BookSearchComponent } from './books/book-search/book-search.component';
+import { MovieSearchComponent } from './movie-search/movie-search.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BookSearchComponent } from './books/book-search/book-search.component';
     NavBarComponent,
     DescriptionComponent,
     BookDetailComponent,
-    BookSearchComponent
+    BookSearchComponent,
+    MovieSearchComponent
   ],
   imports: [
     BrowserModule,
