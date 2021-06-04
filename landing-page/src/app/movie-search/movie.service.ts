@@ -39,14 +39,14 @@ export class MovieService {
           'findMovieByTitle', []))
       );
   }
-  getBook(term: string): Observable<Movie | undefined> {
+  getMovie(term: string): Observable<Movie | undefined> {
     const url = `${this.moviesUrl}/${term}.json`;
     return this.http.get(url).pipe(
       map((data: any) => {
         return data ? MovieService.movieFromAPI(data) : undefined;
       }),
       tap(_ => console.log(`fetched movie name=${term}`)),
-      catchError(this.handleError<Movie>(`getBook isbn=${term}`))
+      catchError(this.handleError<Movie>(`getMovie title=${term}`))
     );
   }
   private static movieFromAPI(data: any): Movie {
