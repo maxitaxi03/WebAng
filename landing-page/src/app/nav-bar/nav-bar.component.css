@@ -4,12 +4,11 @@
     box-sizing: border-box;
 }
 .nav {
-    width: 80%;
+    width: 100%;
     margin: auto;
-    height: 20vh;
     justify-content: space-around;
     align-items: center;
-    padding-top: 30px;
+    padding: 30px;
     background-color: coral;
     border-radius: 5px;
 }
