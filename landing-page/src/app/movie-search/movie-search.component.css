@@ -1,0 +1,5 @@
+.search-result li {
+    font-size: smaller;
+    list-style-type:circle;
+    padding-bottom: 5px;
+}
