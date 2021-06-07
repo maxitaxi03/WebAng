@@ -21,7 +21,7 @@ export class MovieSearchComponent implements OnInit {
     this.movies$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((searchTerm: string) => this.movieService.findMovieByTitle(searchTerm)),
+      switchMap((searchTerm: string) => this.movieService.findMovieByTitle(searchTerm))
     )
   }
 
