@@ -13,9 +13,17 @@ import { Movie } from './movie.interface';
 export class MovieSearchComponent implements OnInit {
   movies: Movie[] = [];
   movies$!: Observable<Movie[]>;
+  private searchTerms = new Subject<string>();
+  
   constructor(private movieService: MovieService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.movies$ = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((searchTerm: string) => this.movieService.findMovieByTitle(searchTerm)),
+    )
+  }
 
   /**
    *
