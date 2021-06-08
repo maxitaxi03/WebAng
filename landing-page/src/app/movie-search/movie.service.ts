@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Movie } from './movie.interface';
 import { AppService } from '../app.service';
-// import { CMovie } from './movie.model';
 
 @Injectable({
   providedIn: 'root'

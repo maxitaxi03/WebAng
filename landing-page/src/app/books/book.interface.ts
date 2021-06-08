@@ -3,5 +3,8 @@ export interface IBook {
   isbn10: string;
   title?: string;
   numPages?: number;
+  physicalFormat?: string;
+  publishDate?: string;
+  publishers?: string[];
 }
 

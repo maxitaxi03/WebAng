@@ -12,14 +12,4 @@
   font-weight: lighter;
   font-size: medium;
 }
-.movie-search-box {
-  display: flex;
-  flex-direction: row;
-  width: 75%;
-}
-#search-box, label {
-  padding: 5px;
-  margin: 2px;
-  font-weight: normal;
-  font-size: large;
-}
+

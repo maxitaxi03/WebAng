@@ -4,6 +4,7 @@ import {Book} from './book.model';
 import {IBook} from './book.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
+import {AppService} from '../app.service';
 
 
 @Injectable({
@@ -28,16 +29,16 @@ export class BookService {
   }
   /**
    * Get IBook by ISBN. Returns 404 if isbn not found
-   * @param isbn
+   * @param isbn eg: 9780340024232
    */
   getBook(isbn: string): Observable<IBook | undefined> {
     const url = `${this.booksUrl}/${isbn}.json`;
     return this.http.get(url).pipe(
       map((data: any) => {
-        return data ? BookService.bookFromAPI(data) : undefined;
+        return data ? Book.fromAPI(data) : undefined;
       }),
       tap(_ => console.log(`fetched hero id=${isbn}`)),
-      catchError(this.handleError<IBook>(`getBook isbn=${isbn}`))
+      catchError(AppService.handleError<IBook>(`getBook isbn=${isbn}`))
     );
   }
   /**
@@ -48,37 +49,11 @@ export class BookService {
     const url = `${this.booksUrl}/${isbn}.json`;
     return this.http.get(url).pipe(
       map((data: any) => {
-        return new Book(data);
+        return new Book(Book.fromAPI(data));
       }),
       tap(_ => console.log(`fetched hero id=${isbn}`)),
-      catchError(this.handleError<Book>(`getBook isbn=${isbn}`))
+      catchError(AppService.handleError<Book>(`getBook isbn=${isbn}`))
     );
   }
-  private static bookFromAPI(data: any): IBook {
-    return {
-      title: data.title,
-      numPages: data.number_of_pages,
-      isbn10: data.isbn_10,
-      isbn13: data.isbn_13,
-    }
-  }
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
 }

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.input-box {
+  padding: 5px;
+  margin: 5px;
+  width: 50%;
+  font-weight: normal;
+  font-size: large;
+}
+button {
+  padding: 5px;
+  margin: 5px;
+  width: 100px;
+  font-weight: normal;
+  font-size: large;
+}

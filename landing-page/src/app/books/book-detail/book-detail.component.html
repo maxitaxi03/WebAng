@@ -1,18 +1,19 @@
-<h3>Get Book by ISBN</h3>
-<input id="isbnInput" [(ngModel)]="inputISBN"  type="text"
-       size="13" maxlength="13" />
-<button (click)="getBookModel()">Find</button>
-
-<div *ngIf="book?.title" style="padding: 10px;">
-<h2>{{book.title}}</h2>
-<div><span>ISBN-13: </span>{{book.isbn13}}</div>
-  <div><span>ISBN-10: </span>{{book.isbn10}}</div>
-  <div><span>Page Count: </span>{{book.numPages}}</div>
-</div>
-
-<div *ngIf="bookModel.isbn13 != ''" style="padding: 10px;">
-  <h2>{{bookModel.title}}</h2>
-  <div><span>ISBN-13: </span>{{bookModel.isbn13}}</div>
-  <div><span>ISBN-10: </span>{{bookModel.isbn10}}</div>
-  <div><span>Page Count: </span>{{bookModel.numPages}}</div>
+<div id="book-find-component">
+  <h3>Find Book</h3>
+  <div style="display: flex; flex-direction: row;">
+    <input #bookFindBox id="isbnInput" type="text" class="input-box"
+           size="13" maxlength="13" placeholder="ISBN" />
+    <button (click)="getBook(bookFindBox.value)">
+      Find
+    </button>
+  </div>
+  <div class="book-details" *ngIf="book.title">
+    <span class="book-title">{{book.title}}</span>
+    <span class="book-data">ISBN-13: {{book.isbn13}}</span>
+    <span class="book-data">ISBN-10: {{book.isbn10}}</span>
+    <span class="book-data">Page Count: {{book.numPages}}</span>
+    <span class="book-data">Publish Date: {{book.publishDate}}</span>
+    <span class="book-data">Format: {{book.physicalFormat}}</span>
+    <span class="book-data">Publishers: {{book.publishers}}</span>
+  </div>
 </div>
