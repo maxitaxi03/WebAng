@@ -28,8 +28,12 @@ export class MovieSearchComponent implements OnInit {
   /**
    *
    */
+  /*
   search(searchTerm: string): void {
     this.movies$ = this.movieService.findMovieByTitle(searchTerm);
   }
-
+  */
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
 }

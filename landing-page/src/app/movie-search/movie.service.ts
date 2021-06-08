@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Movie } from './movie.interface';
 import { AppService } from '../app.service';
-// import { CMovie } from './movie.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class MovieService {
     }
     const url = `${this.moviesUrl}&query=${term}`;
     return this.http.get(url)
-      .pipe(
+      .pipe( 
         map((data: any) => {
           // console.log(data);
           // const movies = data.results;
